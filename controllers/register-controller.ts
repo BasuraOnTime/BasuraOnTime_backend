@@ -8,11 +8,11 @@ let register = async (req: Request, res: Response) => {
     const {
       email,
       password,
-      name,
-      lastName,
-      direccion
+      nombres,
+      apellidos,
+      direccion,
     } = req.body;
-    const registerUser = await UserService.register(new User(email, name, lastName, direccion, password))
+    const registerUser = await UserService.register(new User(email, nombres, apellidos, direccion, password))
     return res.status(201).json(
       { status: 'register ok'}
     );
