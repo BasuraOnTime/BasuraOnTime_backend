@@ -1,7 +1,7 @@
-import UserRepository from '../repositories/UserRepository';
-import User from '../Dto/Usuario/UserDto';
-import generateHash from '../Helpers/generateHash';
-import Auth from '../Dto/Usuario/AuthDto';
+import UserRepository from '../../repositories/Usuario/UserRepository';
+import User from '../../Dto/Usuario/UserDto';
+import generateHash from '../../Helpers/generateHash';
+import Auth from '../../Dto/Usuario/AuthDto';
 
 
 class UserService {

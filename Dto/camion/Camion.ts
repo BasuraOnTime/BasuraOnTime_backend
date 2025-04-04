@@ -83,3 +83,5 @@ class Camion{
         this._tipo_C = tipo_C;
     }
 }
+
+export default Camion;
