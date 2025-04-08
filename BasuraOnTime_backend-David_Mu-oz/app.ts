@@ -15,6 +15,7 @@ app.use('/register', register);
 app.use('/auth', auth);
 app.use('/profile', profile);
 app.use('/start', estado_camion)
+app.use('/')
 
 const PORT = process.env.PORT || 10101;
 
