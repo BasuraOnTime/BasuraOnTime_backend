@@ -4,7 +4,7 @@ class User {
     private _nombres: string;
     private _apellidos: string;
     private _direccion: string;
-    private _password: string
+    private _password: string;
 
     constructor(
         email: string, nombres: string,

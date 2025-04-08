@@ -1,5 +1,5 @@
-import SolitudRepository from '';
-import  Solicitud  from '';
+import SolitudRepository from '../../repositories/Solicitud/SolicitudRepository';
+import  Solicitud  from '../../Dto/Solicitudes/Solicitud';
 
 class SolicitudServis{
     static async registerSolicitud(solicitud: Solicitud) {
