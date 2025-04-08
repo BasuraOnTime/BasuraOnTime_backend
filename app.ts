@@ -5,6 +5,7 @@ import register from './routes/register';
 import auth from './routes/auth';
 import profile from './routes/profile';
 import estado_camion from './routes/estado_camion';
+import solicitudes from './routes/solicitudes';
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -15,6 +16,7 @@ app.use('/register', register);
 app.use('/auth', auth);
 app.use('/profile', profile);
 app.use('/start', estado_camion)
+app.use('/requests', solicitudes)
 
 const PORT = process.env.PORT || 10101;
 
