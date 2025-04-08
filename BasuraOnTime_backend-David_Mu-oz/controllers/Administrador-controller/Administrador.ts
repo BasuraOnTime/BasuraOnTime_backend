@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import EstadoCamionService from "../../services/EstadoCamion/EstadoCamion";
+import UserAdminService from "../../services/Administrador/Administrador";
 
-let estadoCamion = async (req: Request, res: Response) => {
+let administrador = async (req: Request, res: Response) => {
   try {
-    const estadoCamion = await EstadoCamionService.estadoCamion();
+    const estadoCamion = await UserAdminService;
     return res.status(200).json({
       status: estadoCamion[0]
     });
@@ -12,4 +12,4 @@ let estadoCamion = async (req: Request, res: Response) => {
   }
 }
 
-export default estadoCamion;
+export default administrador;

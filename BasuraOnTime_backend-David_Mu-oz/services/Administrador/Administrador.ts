@@ -4,7 +4,7 @@ import generateHash from '../../Helpers/generateHash';
 import Auth from '../../Dto/Admin/AuthDto';
 
 
-class UserService {
+class UserAdminService {
     
     static async register(user: admin) {
         user.password = await generateHash(user.password);
@@ -16,4 +16,4 @@ class UserService {
     }
 }
 
-export default UserService;
+export default UserAdminService;
