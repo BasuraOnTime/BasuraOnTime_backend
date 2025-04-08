@@ -4,9 +4,12 @@ import Camion from '../../Dto/camion/Camion';
 class CamionRepository{
 
     static async estadoCamion(camion: Camion) {
-       const sql = 'Select id_camion, estado_camion FROM camion';
-       const values = [camion.id_camion, camion.estado_camion];
-       return db.execute(sql, values);
+       const sql = 'SELECT * FROM camion';
+
+       if(camion.id_camion === undefined){
+         console.log(sql)
+       }
+       return db.execute(sql);
     }
 }
 
