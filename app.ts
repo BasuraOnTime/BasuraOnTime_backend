@@ -17,6 +17,7 @@ app.use('/auth', auth);
 app.use('/profile', profile);
 app.use('/start', estado_camion)
 app.use('/requests', solicitudes)
+app.use('/solicitudes', solicitudes) // borra esta linea si no es necesario
 
 const PORT = process.env.PORT || 10101;
 
