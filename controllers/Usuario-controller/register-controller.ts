@@ -12,7 +12,6 @@ let register = async (req: Request, res: Response) => {
       apellidos,
       direccion,
     } = req.body;
-    console.log(req.body);
     const registerUser = await UserService.register(new User(email, nombres, apellidos, direccion, password))
     return res.status(201).json(
       { status: 'register ok'}
