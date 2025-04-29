@@ -19,7 +19,7 @@ class UserRepository {
         if (result[0].length > 0){
           const isPasswordValid = await bcrypt.compare(auth.password, result[0][0].password);
           if (isPasswordValid){
-            return {logged: true, status: "Successful authentication", id: result[0][0].id_usuario, id_rol: result[0][0].id_rol}
+            return {logged: true, status: "Successful authentication", id: result[0][0].id_usuario, id_rol: result[0][0].id_rol};
           }
           return {logged: false, status: "Invalid username or password" };
         }
