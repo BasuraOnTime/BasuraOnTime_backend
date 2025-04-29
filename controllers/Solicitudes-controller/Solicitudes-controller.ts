@@ -14,7 +14,7 @@ let registerSolicitud = async(req : Request, res: Response) =>{
         delete req.body.id;        
         const registerSolicitud = await Solicitud_Servis.registerSolicitud( new Solicitud(id_solicitud, cantidad, tipo_residuo, tamano, zona));
         return res.status(201).json(
-            { status: 'register ok'}
+            { status: 'Solicitud registrada correctamente',}
         );
     } catch (error: any) {
         if (error && error.code == "ER_DUP_ENTRY") {
