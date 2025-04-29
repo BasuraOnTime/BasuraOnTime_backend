@@ -5,7 +5,7 @@ let estadoCamion = async (req: Request, res: Response) => {
   try {
     const estadoCamion = await EstadoCamionService.estadoCamion();
     return res.status(200).json({
-      status: estadoCamion[0]
+     data: estadoCamion,
     });
   } catch (error) {
     console.log(error);

@@ -4,8 +4,10 @@ class CamionRepository{
 
     static async estadoCamion() {
        const sql = 'SELECT * FROM camion';
-
-       return db.execute(sql);
+       const result: any = await db.execute(sql);
+       const data = result[0][0];
+       
+       return data;
     }
 }
 
