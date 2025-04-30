@@ -24,7 +24,6 @@ app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
 app.use('/settingsTruck', estado_camion);
 
-//app.use('/settingsRequests', solicitudes);
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {

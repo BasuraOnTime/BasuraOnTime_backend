@@ -25,6 +25,16 @@ class UserRepository {
         }
         return {logged: false, status: "Invalid username or password" };
     }
+
+    static async Mostrarinfo(id: number){
+        const sql = 'SELECT id_usuario, email, nombres, apellidos, direccion FROM users WHERE id_usuario = ?';
+        const values = [id];
+        const result: any = await db.execute(sql, values);
+        if (result[0].length > 0){
+            return {status: true, data: result[0][0]};
+        }
+        return {status: false, data: null};
+    }
 }
 
 

@@ -14,6 +14,14 @@ class UserService {
     static async login(auth: Auth) {
         return await UserRepository.login(auth);
     }
+
+    static async MostrarInfo(id: number ) {
+        return await UserRepository.Mostrarinfo(id);
+    }
+
 }
+
+
+
 
 export default UserService;
