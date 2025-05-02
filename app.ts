@@ -8,6 +8,7 @@ import estado_camion from './routes/estado_camion';
 import solicitudes from './routes/solicitudes';
 import authAdmin from './routes/authAdmin';
 import startAdmin from './routes/startAdmin';
+import configCamionAdmin from "./controllers/Camion-controller/Confi_CamionAdmin";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -22,7 +23,8 @@ app.use('/requests', solicitudes);
 // rutas admin
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
-app.use('/settingsTruck', estado_camion);
+app.use('/settingsTruck', configCamionAdmin);
+
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
