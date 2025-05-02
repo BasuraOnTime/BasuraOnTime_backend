@@ -4,32 +4,40 @@ import CamionRepository from '../../repositories/Camion/CamionRepository';
 class CamionService {
     static async estadoCamion() {
         const camion = await CamionRepository.estadoCamion();
-        const estado = camion.estado_camion;
-        const camionTipo = camion.tipo_c;
-        const camionData = {
-            camionTipo: camionTipo,
-            estado_camion: estado
-        };
-        return camionData;
+        let camionA: any[] = [];
+        camion.forEach((camion: any) => {
+            const estado = camion.estado_camion;
+            const tipo = camion.tipo_c;
+            const camionData = {
+                tipo: tipo,
+                estado_camion: estado,
+            }
+            camionA.push(camionData);
+        });
+        return camionA;
     }
 
     static async configCamionAdmin() {
         const camion = await CamionRepository.estadoCamion();
-        const estado = camion.estado_camion;
-        const modelo = camion.modelo;
-        const marca = camion.marca;
-        const placa = camion.placa;
-        const tipo = camion.tipo_c;
-        const capacidad = camion.capacidad;
-        const camionData = {
-            placa: placa,
-            tipo: tipo,
-            estado_camion: estado,
-            modelo: modelo,
-            marca: marca,
-            capacidad: capacidad,
-        };
-        return camionData;
+        let camionA: any[] = [];
+        camion.forEach((camion: any) => {
+            const placa = camion.placa;
+            const modelo = camion.modelo;
+            const capacidad = camion.capacidad;
+            const estado = camion.estado_camion;
+            const marca = camion.marca;
+            const tipo = camion.tipo_c;
+            const camionData = {
+                placa: placa,
+                modelo: modelo,
+                capacidad: capacidad,
+                estado_camion: estado,
+                marca: marca,
+                tipo_c: tipo,
+            };
+            camionA.push(camionData);
+        });
+        return camionA;
     }
 }
 
