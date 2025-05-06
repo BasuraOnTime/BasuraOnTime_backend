@@ -1,8 +1,9 @@
 import express from "express";
-const router = express.Router();
 import verifyToken from "../middleware/VerifyToken";
 import solicitudesController  from "../controllers/Solicitudes-controller/Solicitudes-controller";
+import { validadorResiduosEspeciales, validadorRE } from "../middleware/Validator/ValidadorResiduosEspeciales";
+const router = express.Router();
 
-router.post('/', verifyToken, solicitudesController)
+router.post('/',validadorResiduosEspeciales, validadorRE, verifyToken, solicitudesController)
 
 export default router;
