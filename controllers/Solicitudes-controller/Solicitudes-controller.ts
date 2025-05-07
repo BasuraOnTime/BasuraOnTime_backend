@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Solicitud_Servis from '../../services/Solicitudes/Solicitudes_Servis';
+import Solicitud_Servis from '../../services/Solicitudes/Solicitudes_Services';
 import Solicitud from "../../Dto/Solicitudes/Solicitud";
 
 let registerSolicitud = async(req : Request, res: Response) =>{

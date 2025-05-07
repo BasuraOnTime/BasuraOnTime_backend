@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import RutasService from "../../services/Rutas/RutasService"
+import RutasService from "../../services/Rutas/RutasServices"
 
 let configRutasAdmin = async (req: Request, res: Response) => {
     try {

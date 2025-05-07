@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import EstadoCamionService from "../../services/EstadoCamion/EstadoCamion";
+import EstadoCamionService from "../../services/Camion/CamionServices";
 
 let estadoCamion = async (req: Request, res: Response) => {
   try {

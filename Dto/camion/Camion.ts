@@ -1,5 +1,4 @@
 class Camion{
-    private _id_camion: number;
     private _placa : string;
     private _modelo : string;
     private _capacidad : string;
@@ -7,8 +6,7 @@ class Camion{
     private _marca: string;
     private _tipo_C : string;
 
-    constructor(
-        id_camion : number, 
+    constructor( 
         placa : string,
         modelo : string,
         capacidad : string,
@@ -16,7 +14,6 @@ class Camion{
         marca : string,
         tipo_C : string
     ){
-        this._id_camion = id_camion;
         this._placa = placa;
         this._modelo = modelo;
         this._capacidad = capacidad;
@@ -26,9 +23,6 @@ class Camion{
     }
 
     // Getters
-    get id_camion(): number {
-        return this._id_camion;
-    }
 
     get placa(): string {
         return this._placa;
@@ -55,9 +49,6 @@ class Camion{
     }
 
     // Setters
-    set id_camion(id_camion: number) {
-        this._id_camion = id_camion;
-    }
 
     set placa(placa: string) {
         this._placa = placa;

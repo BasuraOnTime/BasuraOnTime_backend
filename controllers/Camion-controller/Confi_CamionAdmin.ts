@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CamionService from "../../services/EstadoCamion/EstadoCamion";
+import CamionService from "../../services/Camion/CamionServices";
 
 let configCamionAdmin = async (req: Request, res: Response) => {
   try {
