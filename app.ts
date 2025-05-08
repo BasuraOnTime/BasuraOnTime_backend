@@ -11,6 +11,8 @@ import startAdmin from './routes/startAdmin';
 import configCamionAdmin from './routes/configCamionAdmin'
 import configRutasAdmin from "./controllers/Ruta-controller/ConfigRutasAdminController";
 import addCamionAdmin from './routes/addCamionAdmin';
+import modificarCamionAdmin from './routes/modificarCamionAdmin';
+import deleteCamionAdmin from './routes/deleteCamionAdmin';
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -28,6 +30,8 @@ app.use('/startAdmin', startAdmin);
 app.use('/settingsTruck', configCamionAdmin);
 //app.use('/settingsRoutes', configRutasAdmin); 
 app.use('/addTruck', addCamionAdmin);
+app.use('/modifyTruck', modificarCamionAdmin);
+app.use('/deleteTruck', deleteCamionAdmin);
 
 const PORT = process.env.PORT || 10101;
 

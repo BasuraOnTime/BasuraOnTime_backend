@@ -2,10 +2,17 @@ import CamionRepository from '../../repositories/Camion/CamionRepository';
 
 
 class CamionService {
+    
     static async addCamion(camion: any) {
         return await CamionRepository.addCamion(camion); 
     }
 
+    static async modifyTruck(camion: any) {
+        return await CamionRepository.modifyTruck(camion); 
+    }
+    static async deleteCamion(placa: string) {
+        return await CamionRepository.deleteCamion(placa); 
+    }
     static async estadoCamion() {
         const camion = await CamionRepository.estadoCamion();
         let camionA: any[] = [];
