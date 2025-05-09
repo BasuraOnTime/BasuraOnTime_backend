@@ -50,12 +50,12 @@ class UserRepository {
     }
 }
 
-static async EditarUsuario(id: number, email: string, nombres: string, apellidos: string, direccion: string) {
+static async EditarUsuario(id: number, email: string, nombres: string, apellidos: string, direccion: string ,password : number) {
     const sql = `
         UPDATE users 
         SET email = ?, nombres = ?, apellidos = ?, direccion = ?
         WHERE id_usuario = ?`;
-    const values = [email, nombres, apellidos, direccion, id];
+    const values = [email, nombres, apellidos, direccion, id, password];
 
     try {
         const result: any = await db.execute(sql, values);

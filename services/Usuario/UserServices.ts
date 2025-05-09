@@ -23,8 +23,10 @@ class UserService {
         return await UserRepository.EliminarUsuario(id);
     }
 
-    static async EditarUsuario(id: number, email: string, nombres: string, apellidos: string, direccion: string) {
-        return await UserRepository.EditarUsuario(id, email, nombres, apellidos, direccion);
+
+    static async EditarUsuario(id: number, password : number ,email: string, nombres: string, apellidos: string, direccion: string ) {
+        const hashedPassword = await generateHash(password);
+        return await UserRepository.EditarUsuario(id, email, hashedPassword, nombres, apellidos, direccion );
     }
 
 }
