@@ -13,20 +13,7 @@ let configCamionAdmin = async (req: Request, res: Response) => {
       return res.status(500).json({ errorInfo: error.sqlMessage });
     }
   }
-  // eliminar camion
-  try{
-    const { placa } = req.body;
-    delete req.body.id;
-    const camion = await CamionService.deleteCamionAdmin(placa);
-    return res.status(200).json({
-      status: "Se elimino el camion",
-    });
-
-  } catch (error: any) {
-    if (error && error.code == "ER_DUP_ENTRY") {
-      return res.status(500).json({ errorInfo: error.sqlMessage });
-    }
-  }
+ 
 };
 
 export default configCamionAdmin;
