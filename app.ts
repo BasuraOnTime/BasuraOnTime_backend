@@ -32,7 +32,7 @@ app.use('/settingsTruck', configCamionAdmin);
 app.use('/addTruck', addCamionAdmin);
 app.use('/modifyTruck', modificarCamionAdmin);
 app.use('/deleteTruck', deleteCamionAdmin);
-
+/// holaaa
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
