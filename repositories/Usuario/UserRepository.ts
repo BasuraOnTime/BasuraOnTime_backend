@@ -2,6 +2,7 @@ import db from '../../config/config-db';
 import User from '../../Dto/Usuario/UserDto';
 import Auth from '../../Dto/Usuario/AuthDto';
 import bcrypt from 'bcryptjs';
+import { log } from 'console';
 
 
 class UserRepository {
@@ -50,22 +51,14 @@ class UserRepository {
     }
 }
 
-static async EditarUsuario(id: number, email: string, nombres: string, apellidos: string, direccion: string ,password : number) {
+static async EditarUsuario(email: string, nombres: string, apellidos: string, direccion: string, password: string, id: number) {
     const sql = `
         UPDATE users 
-        SET email = ?, nombres = ?, apellidos = ?, direccion = ?
+        SET email = ?, nombres = ?, apellidos = ?, direccion = ?, password = ?
         WHERE id_usuario = ?`;
-    const values = [email, nombres, apellidos, direccion, id, password];
-
-    try {
-        const result: any = await db.execute(sql, values);
-        if (result[0].affectedRows > 0) {
-            return { status: true, message: 'Usuario actualizado correctamente' };
-        }
-        return { status: false, message: 'Usuario no encontrado o sin cambios' };
-    } catch (error) {
-        return { status: false, message: 'Error al editar el usuario', error };
-    }
+    const values = [email, nombres, apellidos, direccion, password, id];    
+    const result: any = await db.execute(sql, values);
+    return result;
 }
 
 }

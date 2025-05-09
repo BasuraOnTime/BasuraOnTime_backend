@@ -8,18 +8,17 @@ const EditarUsuario = async (req: Request, res: Response) => {
     if (!id || !email || !nombres || !apellidos || !direccion || !password ) {
       return res.status(400).json({ message: "Faltan campos requeridos" });
     }
-
-    const resultado = await UserService.EditarUsuario(id, email, nombres, apellidos, direccion ,password);
-
-    if (resultado.status) {
-      return res.status(200).json({ message: resultado.message });
-    } else {
-      return res.status(404).json({ message: resultado.message });
+    delete req.body.id;
+    const resultado = await UserService.EditarUsuario(email, nombres, apellidos, direccion, password, id);
+    return res.status(200).json({
+        status: "usuario editado correctamente",
+    })
+} catch (error: any) {
+    if (error && error.code == "ER_DUP_ENTRY") {
+      return res.status(500).json({ errorInfo: error.sqlMessage });
     }
-  } catch (error) {
-    console.error("Error al editar usuario:", error);
-    return res.status(500).json({ message: "Error interno del servidor" });
+    return res.status(500).json({ errorInfo: error });
   }
-};
+}
 
 export default EditarUsuario;
