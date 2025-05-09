@@ -9,6 +9,7 @@ import solicitudes from './routes/solicitudes';
 import authAdmin from './routes/authAdmin';
 import startAdmin from './routes/startAdmin';
 import deleteUser from './routes/deleteUser';
+import editUser from './routes/editUser';
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -19,11 +20,13 @@ app.use('/auth', auth);
 app.use('/profile', profile);
 app.use('/start', estado_camion);
 app.use('/requests', solicitudes);
+app.use('/deleteUser', deleteUser);
+app.use('/editUser', editUser);
 // rutas admin
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
 app.use('/settingsTruck', estado_camion);
-app.use('/deleteUser', deleteUser);
+
 
 const PORT = process.env.PORT || 10101;
 
