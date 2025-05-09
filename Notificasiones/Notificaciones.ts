@@ -24,7 +24,7 @@ admin.initializeApp({
 });
 
 const message = {
-  token: 'device_token',
+  token: 'TU_TOKEN_DEL_DISPOSITIVO',
   notification: {
     title: '¡Atención!',
     body: 'El camión de basura está en tu zona.'

@@ -35,6 +35,39 @@ class UserRepository {
         }
         return {status: false, data: null};
     }
+
+    static async EliminarUsuario(id: number) {
+    const sql = 'DELETE FROM users WHERE id_usuario = ?';
+    const values = [id];
+    try {
+        const result: any = await db.execute(sql, values);
+        if (result[0].affectedRows > 0) {
+            return { status: true, message: 'Usuario eliminado correctamente' };
+        }
+        return { status: false, message: 'Usuario no encontrado' };
+    } catch (error) {
+        return { status: false, message: 'Error al eliminar el usuario', error };
+    }
+}
+
+static async EditarUsuario(id: number, email: string, nombres: string, apellidos: string, direccion: string) {
+    const sql = `
+        UPDATE users 
+        SET email = ?, nombres = ?, apellidos = ?, direccion = ?
+        WHERE id_usuario = ?`;
+    const values = [email, nombres, apellidos, direccion, id];
+
+    try {
+        const result: any = await db.execute(sql, values);
+        if (result[0].affectedRows > 0) {
+            return { status: true, message: 'Usuario actualizado correctamente' };
+        }
+        return { status: false, message: 'Usuario no encontrado o sin cambios' };
+    } catch (error) {
+        return { status: false, message: 'Error al editar el usuario', error };
+    }
+}
+
 }
 
 

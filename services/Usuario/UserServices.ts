@@ -19,6 +19,14 @@ class UserService {
         return await UserRepository.Mostrarinfo(id);
     }
 
+    static async EliminarUsuario(id: number) {
+        return await UserRepository.EliminarUsuario(id);
+    }
+
+    static async EditarUsuario(id: number, email: string, nombres: string, apellidos: string, direccion: string) {
+        return await UserRepository.EditarUsuario(id, email, nombres, apellidos, direccion);
+    }
+
 }
 
 
