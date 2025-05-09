@@ -8,7 +8,7 @@ import estado_camion from './routes/estado_camion';
 import solicitudes from './routes/solicitudes';
 import authAdmin from './routes/authAdmin';
 import startAdmin from './routes/startAdmin';
-
+import deleteUser from './routes/deleteUser';
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -23,6 +23,7 @@ app.use('/requests', solicitudes);
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
 app.use('/settingsTruck', estado_camion);
+app.use('/deleteUser', deleteUser);
 
 const PORT = process.env.PORT || 10101;
 
