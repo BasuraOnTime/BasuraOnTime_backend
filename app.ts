@@ -11,7 +11,10 @@ import startAdmin from './routes/startAdmin';
 import deleteUser from './routes/deleteUser';
 import editUser from './routes/editUser';
 import dotenv from "dotenv";
-dotenv.config();
+import password from './routes/password';
+import resetPasswordRoute from './routes/reset-password';
+
+dotenv.config(); 
 
 const app = express().use(bodyParser.json());
 // rutas usuario
@@ -22,6 +25,8 @@ app.use('/start', estado_camion);
 app.use('/requests', solicitudes);
 app.use('/deleteUser', deleteUser);
 app.use('/editUser', editUser);
+app.use('/api', password);
+app.use('/apiReset', resetPasswordRoute);
 // rutas admin
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
