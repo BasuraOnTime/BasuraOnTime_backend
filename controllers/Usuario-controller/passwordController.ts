@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { sendRecoveryEmail } from '../../Helpers/sendEmail';
+import User from '../../Dto/Usuario/UserDto';
+import UserService from '../../services/Usuario/UserServices';
+import generateToken from '../../Helpers/generateToken';
 
 // Cargar variables de entorno
 dotenv.config();
