@@ -15,7 +15,10 @@ import modificarCamionAdmin from './routes/modificarCamionAdmin';
 import deleteCamionAdmin from './routes/deleteCamionAdmin';
 
 import dotenv from "dotenv";
-dotenv.config();
+import password from './routes/password';
+import resetPasswordRoute from './routes/reset-password';
+
+dotenv.config(); 
 
 const app = express().use(bodyParser.json());
 // rutas usuario
@@ -24,6 +27,10 @@ app.use('/auth', auth);
 app.use('/profile', profile);
 app.use('/start', estado_camion);
 app.use('/requests', solicitudes);
+app.use('/deleteUser', deleteUser);
+app.use('/editUser', editUser);
+app.use('/api', password);
+app.use('/apiReset', resetPasswordRoute);
 // rutas admin
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
@@ -40,3 +47,4 @@ app.listen(PORT, () => {
 }).on("error", (error) => {
   throw new Error(error.message);
 });
+
