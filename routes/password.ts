@@ -1,9 +1,7 @@
-console.log('✅ Módulo password.ts cargado');
-
-import { Router } from 'express';
+import express from 'express';
 import { recuperarContraseña } from '../controllers/Usuario-controller/passwordController';
 
-const router = Router();
+const router = express.Router();
 
 router.post('/recuperar-password', recuperarContraseña);
 

@@ -25,9 +25,9 @@ class UserService {
     }
 
 
-    static async EditarUsuario(email: string, nombres: string, apellidos: string, direccion: string, password: string, id: number) {
+    static async EditarUsuario(nombres: string, apellidos: string, direccion: string, password: string, email: string, ) {
         const hashedPassword = await generateHash(password);
-        return await UserRepository.EditarUsuario(email, nombres, apellidos, direccion, hashedPassword, id);
+        return await UserRepository.EditarUsuario(nombres, apellidos, direccion, hashedPassword, email);
     }
 
 }

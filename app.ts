@@ -13,6 +13,8 @@ import configRutasAdmin from "./controllers/Ruta-controller/ConfigRutasAdminCont
 import addCamionAdmin from './routes/addCamionAdmin';
 import modificarCamionAdmin from './routes/modificarCamionAdmin';
 import deleteCamionAdmin from './routes/deleteCamionAdmin';
+import deleteUser from './routes/deleteUser';
+import editUser from './routes/editUser';
 
 import dotenv from "dotenv";
 import password from './routes/password';
@@ -31,6 +33,7 @@ app.use('/deleteUser', deleteUser);
 app.use('/editUser', editUser);
 app.use('/api', password);
 app.use('/apiReset', resetPasswordRoute);
+
 // rutas admin
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
@@ -39,7 +42,7 @@ app.use('/settingsTruck', configCamionAdmin);
 app.use('/addTruck', addCamionAdmin);
 app.use('/modifyTruck', modificarCamionAdmin);
 app.use('/deleteTruck', deleteCamionAdmin);
-/// holaaa
+
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
