@@ -5,8 +5,7 @@ export const validatorRegister : ValidationChain[] = [
     check('email').isEmail(),
     check('password').isLength({ min: 8 , max: 15 }),
     check('nombres').isLength({ min: 3, max: 20 }),
-    check('apellidos').isLength({ min: 3, max: 20 }),
-    check('direccion').isLength({ min: 3, max: 50 }),
+    check('apellidos').isLength({ min: 3, max: 20 })
 ];
 
 export const validadorR = (req: Request, res: Response, next: NextFunction) => {

@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import register from './routes/register';
 import auth from './routes/auth';
@@ -23,6 +24,8 @@ import resetPasswordRoute from './routes/reset-password';
 dotenv.config(); 
 
 const app = express().use(bodyParser.json());
+app.use(cors());
+
 // rutas usuario
 app.use('/register', register);
 app.use('/auth', auth);

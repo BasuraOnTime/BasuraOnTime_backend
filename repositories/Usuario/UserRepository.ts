@@ -8,8 +8,8 @@ import { log } from 'console';
 class UserRepository {
 
     static async add(user: User){
-        const sql = 'INSERT INTO users (email, nombres, apellidos, direccion, password) VALUES (?, ?, ?, ?, ?)';
-        const values = [user.email, user.nombres, user.apellidos, user.direccion, user.password];
+        const sql = 'INSERT INTO users (email, nombres, apellidos, password) VALUES (?, ?, ?, ?)';
+        const values = [user.email, user.nombres, user.apellidos, user.password];
         return db.execute(sql, values);
     }
 
