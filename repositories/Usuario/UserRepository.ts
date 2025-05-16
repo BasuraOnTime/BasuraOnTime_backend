@@ -38,28 +38,48 @@ class UserRepository {
     }
 
     static async EliminarUsuario(id: number) {
-    const sql = 'DELETE FROM users WHERE id_usuario = ?';
-    const values = [id];
-    try {
+        const sql = 'DELETE FROM users WHERE id_usuario = ?';
+        const values = [id];
+        try {
+            const result: any = await db.execute(sql, values);
+        if (result[0].affectedRows > 0) {
+             return { status: true, message: 'Usuario eliminado correctamente' };
+        }
+            return { status: false, message: 'Usuario no encontrado' };
+        } catch (error) {
+            return { status: false, message: 'Error al eliminar el usuario', error };
+        }
+    }
+
+    static async EditarUsuario(nombres: string, apellidos: string, direccion: string, password: string, email: string) {
+        const sql = `
+            UPDATE users 
+            SET nombres = ?, apellidos = ?, direccion = ?, password = ?
+            WHERE email = ?`;
+        const values = [nombres, apellidos, direccion, password, email];    
+        const result: any = await db.execute(sql, values);
+        return result;
+    }
+
+    static async validateEmail(email: string) {
+        const sql = 'SELECT id_usuario ,id_rol FROM users WHERE email = ?';
+        const values = [email];
+        const result: any = await db.execute(sql, values);
+        if (result[0].length > 0){
+            return {status: true, id: result[0][0].id_usuario, id_rol: result[0][0].id_rol};
+        }else {
+            return {status: false, message: 'Email no encontrado'};
+        }
+    }
+    static async recoverPassword(Newpassword: string, validatePassword: string, email: string) {
+        const sql = 'UPDATE users SET password = ? WHERE email = ?';
+        const values = [Newpassword, validatePassword, email];
         const result: any = await db.execute(sql, values);
         if (result[0].affectedRows > 0) {
-            return { status: true, message: 'Usuario eliminado correctamente' };
+            return { status: true, message: 'Contraseña actualizada correctamente' };
         }
-        return { status: false, message: 'Usuario no encontrado' };
-    } catch (error) {
-        return { status: false, message: 'Error al eliminar el usuario', error };
+        return { status: false, message: 'Error al actualizar la contraseña' };
     }
-}
-
-static async EditarUsuario(nombres: string, apellidos: string, direccion: string, password: string, email: string) {
-    const sql = `
-        UPDATE users 
-        SET nombres = ?, apellidos = ?, direccion = ?, password = ?
-        WHERE email = ?`;
-    const values = [nombres, apellidos, direccion, password, email];    
-    const result: any = await db.execute(sql, values);
-    return result;
-}
 
 }
 

@@ -16,10 +16,10 @@ import modificarCamionAdmin from './routes/modificarCamionAdmin';
 import deleteCamionAdmin from './routes/deleteCamionAdmin';
 import deleteUser from './routes/deleteUser';
 import editUser from './routes/editUser';
+import recoverPassword from './routes/recoverPassword';
+import validateEmail from './routes/validatePassword';
 
 import dotenv from "dotenv";
-import password from './routes/password';
-import resetPasswordRoute from './routes/reset-password';
 
 dotenv.config(); 
 
@@ -34,8 +34,8 @@ app.use('/start', estado_camion);
 app.use('/requests', solicitudes);
 app.use('/deleteUser', deleteUser);
 app.use('/editUser', editUser);
-app.use('/api', password);
-app.use('/apiReset', resetPasswordRoute);
+app.use('/reset-password', recoverPassword);
+app.use('/validateEmail', validateEmail);
 
 // rutas admin
 app.use('/authAdmin', authAdmin);

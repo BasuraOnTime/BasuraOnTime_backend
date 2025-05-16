@@ -30,6 +30,18 @@ class UserService {
         return await UserRepository.EditarUsuario(nombres, apellidos, direccion, hashedPassword, email);
     }
 
+    static async valiateEmail(email: string) {
+        const user = await UserRepository.validateEmail(email);
+       return user;
+    }
+
+    static async recoverPassword(Newpassword: string, validatePassword: string, email: string) {
+        if (Newpassword !== validatePassword) {
+            return { status: false, message: 'Las contraseñas no coinciden' };
+        }
+        const hashedPassword = await generateHash(Newpassword);
+        return await UserRepository.recoverPassword(hashedPassword, validatePassword, email);
+    }
 }
 
 
