@@ -71,10 +71,11 @@ class UserRepository {
             return {status: false, message: 'Email no encontrado'};
         }
     }
-    static async recoverPassword(Newpassword: string, validatePassword: string, email: string) {
+    static async recoverPassword(Newpassword: string, email: string) {
         const sql = 'UPDATE users SET password = ? WHERE email = ?';
-        const values = [Newpassword, validatePassword, email];
+        const values = [Newpassword,email];
         const result: any = await db.execute(sql, values);
+        console.log(result);
         if (result[0].affectedRows > 0) {
             return { status: true, message: 'Contraseña actualizada correctamente' };
         }

@@ -3,6 +3,6 @@ import recoverPassword from '../controllers/Usuario-controller/recoverPassword';
 
 const router = express.Router();
 
-router.post('/reset-', recoverPassword);
+router.put('/', recoverPassword);
 
 export default router;

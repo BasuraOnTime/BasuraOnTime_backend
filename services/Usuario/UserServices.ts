@@ -40,7 +40,7 @@ class UserService {
             return { status: false, message: 'Las contraseñas no coinciden' };
         }
         const hashedPassword = await generateHash(Newpassword);
-        return await UserRepository.recoverPassword(hashedPassword, validatePassword, email);
+        return await UserRepository.recoverPassword(hashedPassword, email);
     }
 }
 
