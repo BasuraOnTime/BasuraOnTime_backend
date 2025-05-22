@@ -7,12 +7,14 @@ let registerSolicitud = async(req : Request, res: Response) =>{
         const{
             id_solicitud,
             zona,
+            fecha_solicitud,
             cantidad,
             tipo_residuo,
             tamano,
         } = req.body;
-        delete req.body.id;        
-        const registerSolicitud = await Solicitud_Servis.registerSolicitud( new Solicitud(id_solicitud, cantidad, tipo_residuo, tamano, zona));
+        delete req.body.id;    
+        console.log(req.body);
+        const registerSolicitud = await Solicitud_Servis.registerSolicitud( new Solicitud(id_solicitud, cantidad, tipo_residuo, tamano, zona, fecha_solicitud));
         return res.status(201).json(
             { status: 'Solicitud registrada correctamente',}
         );
