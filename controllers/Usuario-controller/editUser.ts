@@ -3,13 +3,13 @@ import UserService from "../../services/Usuario/UserServices";
 
 const EditarUsuario = async (req: Request, res: Response) => {
   try {
-    const {email, nombres, apellidos, direccion, password } = req.body;
+    const {email, nombres, apellidos, password } = req.body;
 
-    if ( !email || !nombres || !apellidos || !direccion || !password ) {
+    if ( !email || !nombres || !apellidos || !password ) {
       return res.status(400).json({ message: "Faltan campos requeridos" });
     }
     delete req.body.id;
-    const resultado = await UserService.EditarUsuario(nombres, apellidos, direccion, password, email,);
+    const resultado = await UserService.EditarUsuario(nombres, apellidos, password, email,);
     return res.status(200).json({
         status: "usuario editado correctamente",
     })

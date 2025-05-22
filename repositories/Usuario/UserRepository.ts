@@ -28,11 +28,11 @@ class UserRepository {
     }
 
     static async Mostrarinfo(id: number){
-        const sql = 'SELECT id_usuario, email, nombres, apellidos, direccion FROM users WHERE id_usuario = ?';
+        const sql = 'SELECT email, nombres, apellidos FROM users WHERE id_usuario = ?';
         const values = [id];
         const result: any = await db.execute(sql, values);
         if (result[0].length > 0){
-            return {status: true, data: result[0][0]};
+            return result[0][0];
         }
         return {status: false, data: null};
     }
@@ -51,12 +51,12 @@ class UserRepository {
         }
     }
 
-    static async EditarUsuario(nombres: string, apellidos: string, direccion: string, password: string, email: string) {
+    static async EditarUsuario(nombres: string, apellidos: string, password: string, email: string) {
         const sql = `
             UPDATE users 
-            SET nombres = ?, apellidos = ?, direccion = ?, password = ?
+            SET nombres = ?, apellidos = ?, password = ?
             WHERE email = ?`;
-        const values = [nombres, apellidos, direccion, password, email];    
+        const values = [nombres, apellidos, password, email];    
         const result: any = await db.execute(sql, values);
         return result;
     }
