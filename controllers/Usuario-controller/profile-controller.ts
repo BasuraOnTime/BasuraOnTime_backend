@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import UserService from "../../services/Usuario/UserServices";
-import { database } from "firebase-admin";
 
 let profile = async (req: Request, res: Response) => {
   try {
