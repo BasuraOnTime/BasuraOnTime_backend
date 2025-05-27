@@ -1,6 +1,5 @@
 class Solicitud{
 
-    private _id_solicitud: number;
     private _zona: string;
     private _fecha_solicitud: string;
     private _cantidad: number;
@@ -8,11 +7,10 @@ class Solicitud{
     private _tamano: string;
 
     constructor(
-        id_solicitud: number, cantidad: number,
+        cantidad: number,
         tipo_residuo: string, tamano: string, 
         zona: string, fecha_solicitud: string,
     ){
-        this._id_solicitud = id_solicitud;
         this._cantidad = cantidad;
         this._tipo_residuo = tipo_residuo;
         this._tamano = tamano;
@@ -20,9 +18,6 @@ class Solicitud{
         this._fecha_solicitud = fecha_solicitud;
     }
 
-    get id_solicitud(): number {
-        return this._id_solicitud;
-    }
 
     get zona(): string {
         return this._zona;
@@ -44,9 +39,6 @@ class Solicitud{
         return this._tamano;
     }
 
-    set id_solicitud(id_solicitud: number) {
-        this._id_solicitud = id_solicitud;
-    }
 
     set zona(zona: string) {
         this._zona = zona;
