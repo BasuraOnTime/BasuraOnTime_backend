@@ -18,8 +18,10 @@ import deleteUser from './routes/deleteUser';
 import editUser from './routes/editUser';
 import recoverPassword from './routes/recoverPassword';
 import validateEmail from './routes/validatePassword';
+import notificarUser from './routes/notificaruser';
 
 import dotenv from "dotenv";
+
 
 dotenv.config(); 
 
@@ -47,6 +49,7 @@ app.use('/modifyTruck', modificarCamionAdmin);
 app.use('/deleteTruck', deleteCamionAdmin);
 
 ///hola
+app.use ('/notifiaciones', notificarUser);
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
