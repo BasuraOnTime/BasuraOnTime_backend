@@ -18,6 +18,7 @@ import deleteUser from './routes/deleteUser';
 import editUser from './routes/editUser';
 import recoverPassword from './routes/recoverPassword';
 import validateEmail from './routes/validatePassword';
+// pull
 
 import dotenv from "dotenv";
 
