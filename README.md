@@ -16,3 +16,6 @@
 npm install
 npm install express-validator
 npm install cors
+npm install --save-dev @types/nodemailer @types/express-validator
+npm install firebase nodemailer express-validator
+npm i --save-dev @types/cors
