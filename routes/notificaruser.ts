@@ -1,6 +1,6 @@
 // src/routes/sms.ts
 import { Router, Request, Response } from 'express';
-import  { enviarSMSVonage } from '../NOTIFICACIONES/sms';
+import  { enviarSMSVonage } from '../Helpers/notificaciones/sms';
 
 const router = Router();
 

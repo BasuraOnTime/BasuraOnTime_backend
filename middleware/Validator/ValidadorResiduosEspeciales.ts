@@ -2,7 +2,6 @@ import { check, validationResult, ValidationChain } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 
 export const validadorResiduosEspeciales: ValidationChain[] = [
-    check('id_solicitud').isNumeric(),
     check('zona').isLength({ min: 5, max: 255 }),
     check('cantidad').isNumeric(),
     check('tipo_residuo').isLength({ min: 3, max: 100 }),

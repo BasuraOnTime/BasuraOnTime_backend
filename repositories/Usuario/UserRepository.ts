@@ -2,14 +2,13 @@ import db from '../../config/config-db';
 import User from '../../Dto/Usuario/UserDto';
 import Auth from '../../Dto/Usuario/AuthDto';
 import bcrypt from 'bcryptjs';
-import { log } from 'console';
 
 
 class UserRepository {
 
     static async add(user: User){
-        const sql = 'INSERT INTO users (email, nombres, apellidos, password) VALUES (?, ?, ?, ?)';
-        const values = [user.email, user.nombres, user.apellidos, user.password];
+        const sql = 'INSERT INTO users (email, nombres, apellidos, telefono, password) VALUES (?, ?, ?, ?,?)';
+        const values = [user.email, user.nombres, user.apellidos, user.telefono, user.password];
         return db.execute(sql, values);
     }
 

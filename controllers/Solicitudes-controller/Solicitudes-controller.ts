@@ -5,7 +5,6 @@ import Solicitud from "../../Dto/Solicitudes/Solicitud";
 let registerSolicitud = async(req : Request, res: Response) =>{
     try{
         const{
-            id_solicitud,
             zona,
             fecha_solicitud,
             cantidad,
@@ -13,8 +12,7 @@ let registerSolicitud = async(req : Request, res: Response) =>{
             tamano,
         } = req.body;
         delete req.body.id;    
-        console.log(req.body);
-        const registerSolicitud = await Solicitud_Servis.registerSolicitud( new Solicitud(id_solicitud, cantidad, tipo_residuo, tamano, zona, fecha_solicitud));
+        const registerSolicitud = await Solicitud_Servis.registerSolicitud( new Solicitud(cantidad, tipo_residuo, tamano, zona, fecha_solicitud));
         return res.status(201).json(
             { status: 'Solicitud registrada correctamente',}
         );

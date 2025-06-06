@@ -14,7 +14,7 @@
 // export default notificarUsuario;
 
 
-import { enviarSMSVonage } from '../../NOTIFICACIONES/sms';
+import { enviarSMSVonage } from '../../Helpers/notificaciones/sms';
 
 export const notificarUsuario = async () => {
   const telefono = '573001112233'; // Sin "+"
