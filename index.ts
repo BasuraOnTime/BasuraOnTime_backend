@@ -19,6 +19,7 @@ import editUser from './routes/editUser';
 import recoverPassword from './routes/recoverPassword';
 import validateEmail from './routes/validatePassword';
 import notificarUser from './routes/notificaruser';
+import configSoliAdmin from './routes/configSoliAdmin';
 
 import dotenv from "dotenv";
 
@@ -47,6 +48,7 @@ app.use('/settingsTruck', configCamionAdmin);
 app.use('/addTruck', addCamionAdmin);
 app.use('/modifyTruck', modificarCamionAdmin);
 app.use('/deleteTruck', deleteCamionAdmin);
+app.use('/settingsRequest', configSoliAdmin);
 
 ///hola
 app.use ('/notifiaciones', notificarUser);
