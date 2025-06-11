@@ -50,7 +50,6 @@ app.use('/deleteTruck', deleteCamionAdmin);
 app.use('/settingsRequest', configSoliAdmin);
 //app.use('/settingsRoutes', configRutasAdmin); 
 
-///hola
 app.use ('/notifiaciones', notificarUser);
 const PORT = process.env.PORT || 10101;
 
