@@ -21,7 +21,8 @@ import validateEmail from './routes/validatePassword';
 import notificarUser from './routes/notificaruser';
 import conductor from "./routes/conductores";
 import dotenv from "dotenv";
-
+import editconductor from "./routes/editConductores";
+import elminarConductor from "./routes/deleteConductor";
 
 dotenv.config(); 
 
@@ -50,7 +51,10 @@ app.use('/deleteTruck', deleteCamionAdmin);
 
 ///hola
 app.use ('/notifiaciones', notificarUser);
-app.use ('/api',conductor);
+//conductores
+app.use ('/agregarConductor',conductor);
+app.use ("/editConductor", editconductor)
+app.use ("/deletConductor", elminarConductor)
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {

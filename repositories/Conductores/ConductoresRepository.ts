@@ -16,6 +16,33 @@ class ConductorRepository {
     ];
     return db.execute(query, values);
   }
+
+
+    static async delete(id_conductor: number) {
+      const query = 'DELETE FROM conductores WHERE id_conductor = ?';
+      return db.execute(query, [id_conductor]);
+    }
+    
+
+
+    static async update(id: number, conductor: Conductor) {
+      const query = `
+        UPDATE conductores
+        SET nombres = ?, apellidos = ?, telefono = ?, tipo_licencia = ?, fecha_vencimiento_licencia = ?
+        WHERE id_conductor = ?
+      `;
+      const values = [
+        conductor.nombres,
+        conductor.apellidos,
+        conductor.telefono,
+        conductor.tipo_licencia,
+        conductor.fecha_vencimiento_licencia,
+        id
+      ];
+      return db.execute(query, values);
+    }
+
+
 }
 
 export default ConductorRepository;
