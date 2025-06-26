@@ -19,7 +19,7 @@ import editUser from './routes/editUser';
 import recoverPassword from './routes/recoverPassword';
 import validateEmail from './routes/validatePassword';
 import notificarUser from './routes/notificaruser';
-
+import conductores from "./routes/conductores";
 import dotenv from "dotenv";
 
 
@@ -50,6 +50,7 @@ app.use('/deleteTruck', deleteCamionAdmin);
 
 ///hola
 app.use ('/notifiaciones', notificarUser);
+app.use ('api',conductores);
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
@@ -57,4 +58,6 @@ app.listen(PORT, () => {
 }).on("error", (error) => {
   throw new Error(error.message);
 });
-
+app.get('/api/test', (req, res) => {
+  res.send('API funcionando');
+});

@@ -21,3 +21,6 @@ npm install firebase nodemailer express-validator
 npm i --save-dev @types/cors
 npm install multer
 npm install --save-dev @types/multer
+// NUEVAS DEPENDENCIAS 
+npm install express mysql2
+npm install --save-dev typescript ts-node @types/node @types/express nodemon

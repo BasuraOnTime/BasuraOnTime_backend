@@ -22,7 +22,7 @@ import validateEmail from './routes/validatePassword';
 import notificarUser from './routes/notificaruser';
 import router from "./services/cloudinary/imagenes";
 import dotenv from "dotenv";
-
+import conductores from "./routes/conductores";
 
 dotenv.config(); 
 
@@ -52,6 +52,8 @@ app.use('/deleteTruck', deleteCamionAdmin);
 ///hola
 app.use('/cloudinary', router);
 app.use ('/notifiaciones', notificarUser);
+
+app.use ('/api',conductores);
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
