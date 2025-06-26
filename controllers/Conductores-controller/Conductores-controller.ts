@@ -27,3 +27,5 @@ export const agregarConductor = async (req: Request, res: Response) => {
     res.status(500).json({ mensaje: 'Error al insertar el conductor' });
   }
 };
+
+export default agregarConductor

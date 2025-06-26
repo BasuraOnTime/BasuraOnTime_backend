@@ -62,3 +62,6 @@ app.listen(PORT, () => {
   throw new Error(error.message);
 });
 
+app.get('/api/test', (req, res) => {
+  res.send('API funcionando');
+});

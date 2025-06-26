@@ -3,14 +3,14 @@ class Conductor {
     private _apellidos: string;
     private _telefono: string;
     private _tipo_licencia: string;
-    private _fecha_vencimiento_licencia: Date; // Tipo string en formato 'YYYY-MM-DD'
+    private _fecha_vencimiento_licencia: string; // Tipo string en formato 'YYYY-MM-DD'
 
     constructor(
         nombres: string,
         apellidos: string,
         telefono: string,
         tipo_licencia: string,
-        fecha_vencimiento_licencia: Date
+        fecha_vencimiento_licencia: string
     ) {
         this._nombres = nombres;
         this._apellidos = apellidos;
@@ -36,7 +36,7 @@ class Conductor {
         return this._tipo_licencia;
     }
 
-    get fecha_vencimiento_licencia(): Date{
+    get fecha_vencimiento_licencia(): string{
         return this._fecha_vencimiento_licencia;
     }
 
@@ -57,7 +57,7 @@ class Conductor {
         this._tipo_licencia = value;
     }
 
-    set fecha_vencimiento_licencia(value: Date) {
+    set fecha_vencimiento_licencia(value: string) {
         this._fecha_vencimiento_licencia = value;
     }
 }

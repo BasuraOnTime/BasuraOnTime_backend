@@ -1,8 +1,9 @@
-import { Router } from 'express';
-import { agregarConductor } from '../controllers/Conductores-controller/Conductores-controller'; 
 
-const conductores = Router();
+import express from 'express';
+import  agregarConductor  from '../controllers/Conductores-controller/Conductores-controller';
 
-conductores.post('/conductores', agregarConductor);
+const conductor = express.Router();
 
-export default conductores;
+conductor.post('/conductores', agregarConductor);
+
+export default conductor;
