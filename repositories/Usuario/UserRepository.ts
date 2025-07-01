@@ -7,9 +7,18 @@ import bcrypt from 'bcryptjs';
 class UserRepository {
 
     static async add(user: User){
-        const sql = 'INSERT INTO users (email, nombres, apellidos, telefono, password) VALUES (?, ?, ?, ?,?)';
-        const values = [user.email, user.nombres, user.apellidos, user.telefono, user.password];
-        return db.execute(sql, values);
+        try {
+            const connection = await db.getConnection();
+            connection.release();
+            const sql = 'CALL InsertUsuario(?, ?, ?, ?, ?, ?, ?, ?)';
+            const values = [user.id_rol, user.email, user.nombres, user.apellidos, user.telefono, user.password, user.latitud, user.longitud];
+            console.log(typeof(user.latitud));
+            const result = await db.execute(sql, values);
+            return result;
+        } catch (error) {
+            console.error('no se logro conectar a la db', error);
+            throw error;
+        }
     }
 
     static async login(auth: Auth){
