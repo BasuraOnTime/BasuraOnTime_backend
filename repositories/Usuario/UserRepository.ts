@@ -26,9 +26,13 @@ class UserRepository {
         const values = [auth.email];
         const result: any = await db.execute(sql, values);
         if (result[0].length > 0){
-          const isPasswordValid = await bcrypt.compare(auth.password, result[0][0].password);
+            const user = result[0][0];
+            if(!user[0].password){
+                return {logged: false, status: "Usuario no tiene contraseña" };
+            }
+            const isPasswordValid = await bcrypt.compare(auth.password, user[0].password);
           if (isPasswordValid){
-            return {logged: true, status: "Successful authentication", id: result[0][0].id_usuario, id_rol: result[0][0].id_rol};
+            return {logged: true, status: "Successful authentication", id: user[0].id_usuario, id_rol: user[0].id_rol};
           }
           return {logged: false, status: "Invalid username or password" };
         }
