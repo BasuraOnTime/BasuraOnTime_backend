@@ -23,7 +23,8 @@ import conductor from "./routes/conductores";
 import dotenv from "dotenv";
 import editconductor from "./routes/editConductores";
 import elminarConductor from "./routes/deleteConductor";
-
+import documento from "./routes/uploadDocumento";
+import mostrarDoc from "./routes/mostrarDocumento";
 dotenv.config(); 
 
 const app = express().use(bodyParser.json());
@@ -55,6 +56,9 @@ app.use ('/notifiaciones', notificarUser);
 app.use ('/agregarConductor',conductor);
 app.use ("/editConductor", editconductor)
 app.use ("/deletConductor", elminarConductor)
+//
+app.use ('/documentos',documento)
+app.use ('/mostrar', mostrarDoc)
 const PORT = process.env.PORT || 10101;
 
 app.listen(PORT, () => {
