@@ -22,7 +22,7 @@ class UserRepository {
     }
 
     static async login(auth: Auth){
-        const sql = 'SELECT id_usuario, password, id_rol FROM users WHERE email = ?';
+        const sql = 'CALL LoginUsuario(?)';
         const values = [auth.email];
         const result: any = await db.execute(sql, values);
         if (result[0].length > 0){
@@ -36,7 +36,7 @@ class UserRepository {
     }
 
     static async Mostrarinfo(id: number){
-        const sql = 'SELECT email, nombres, apellidos, telefono FROM users WHERE id_usuario = ?';
+        const sql = 'CALL GetUsuarioById(?)';
         const values = [id];
         const result: any = await db.execute(sql, values);
         if (result[0].length > 0){
@@ -46,7 +46,7 @@ class UserRepository {
     }
 
     static async EliminarUsuario(id: number) {
-        const sql = 'DELETE FROM users WHERE id_usuario = ?';
+        const sql = 'CALL DeleteUsuarioById(?)';
         const values = [id];
         try {
             const result: any = await db.execute(sql, values);
@@ -60,17 +60,14 @@ class UserRepository {
     }
 
     static async EditarUsuario(nombres: string, apellidos: string, password: string, email: string) {
-        const sql = `
-            UPDATE users 
-            SET nombres = ?, apellidos = ?, password = ?
-            WHERE email = ?`;
+        const sql = 'CALL UpdateUsuarioById(?, ?, ?, ?)';
         const values = [nombres, apellidos, password, email];    
         const result: any = await db.execute(sql, values);
         return result;
     }
 
     static async validateEmail(email: string) {
-        const sql = 'SELECT id_usuario ,id_rol FROM users WHERE email = ?';
+        const sql = 'CALL ValidateEmail(?)';
         const values = [email];
         const result: any = await db.execute(sql, values);
         if (result[0].length > 0){
@@ -80,7 +77,7 @@ class UserRepository {
         }
     }
     static async recoverPassword(Newpassword: string, email: string) {
-        const sql = 'UPDATE users SET password = ? WHERE email = ?';
+        const sql = 'CALL UpdateUsuarioPasswordByEmail(?, ?)';
         const values = [Newpassword,email];
         const result: any = await db.execute(sql, values);
         console.log(result);
