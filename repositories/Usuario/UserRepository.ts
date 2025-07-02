@@ -64,9 +64,9 @@ class UserRepository {
         }
     }
 
-    static async EditarUsuario(nombres: string, apellidos: string, password: string, email: string) {
-        const sql = 'CALL UpdateUsuarioById(?, ?, ?, ?)';
-        const values = [nombres, apellidos, password, email];    
+    static async EditarUsuario( email: string, nombres: string, apellidos: string, telefono: string, password: string, id: number) {
+        const sql = 'CALL UpdateUsuarioById(?, ?, ?, ?, ?, ?)';
+        const values = [email, nombres, apellidos, telefono, password, id];    
         const result: any = await db.execute(sql, values);
         return result;
     }
