@@ -5,7 +5,7 @@ dotenv.config();
 
 
 interface JwtPayload {
-    data: {id: number, id_rol: number},
+    data: {id: number, rol: number},
     exp: number,
     iat: number
 }
@@ -23,10 +23,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
         try {
             let decoded = jwt.verify(token, process.env.KEY_TOKEN as string) as JwtPayload;            
             req.body.id = decoded.data.id;
-            req.body.id_rol = decoded.data.id_rol;
-
-            console.log(`User ID: ${req.body.id}, Role: ${req.body.id_rol}`);
-
+            req.body.rol = decoded.data.rol;
             return next()
         } catch (error) {
             return res.status(403).json(
