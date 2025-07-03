@@ -8,11 +8,11 @@ class DocumentoRepository {
     return db.execute(query, values);
   }
 
-static async obtenerPorId(id: number) {
-  const query = `SELECT nombre_archivo, archivo_pdf FROM documentos WHERE id = ?`;
-  const [result]: any = await db.execute(query, [id]);
-  return result.length > 0 ? result[0] : null;
-}
+  static async obtenerPorId(id_rol: number) {
+    const query = `CALL GetRutasWithRoles(?)`;
+    const [result]: any = await db.execute(query, [id_rol]);
+    return result.length > 0 ? result[0] : null;
+  }
 
 
 }

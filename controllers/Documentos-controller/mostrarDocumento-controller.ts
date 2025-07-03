@@ -2,15 +2,16 @@ import { Request, Response } from 'express';
 import DocumentoRepository from '../../repositories/Documentos/DocumentosRepository'
 
 export const mostrarDocumentoPorParams = async (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  try {
-    const { id } = req.body;
 
-    if (!id || isNaN(id)) {
-      return res.status(400).json({ mensaje: 'ID inválido' });
+  try {
+    delete req.body.id
+    const { id_rol } = req.body;
+
+    if (!id_rol || isNaN(id_rol)) {
+      return res.status(400).json({ mensaje: 'ID de rol inválido' });
     }
 
-    const documento = await DocumentoRepository.obtenerPorId(Number(id));
+    const documento = await DocumentoRepository.obtenerPorId(Number(id_rol));
 
     if (!documento) {
       return res.status(404).json({ mensaje: 'Documento no encontrado' });
