@@ -92,6 +92,7 @@ class UserRepository {
         return { status: false, message: 'Error al actualizar la contraseña' };
     }
 
+
 }
 
 

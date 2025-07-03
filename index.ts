@@ -24,6 +24,7 @@ import editconductor from "./routes/editConductores";
 import elminarConductor from "./routes/deleteConductor";
 import documento from "./routes/uploadDocumento";
 import mostrarDoc from "./routes/mostrarDocumento";
+import mostrarUbi from "./routes/mostrarUbiUser";
 
 import dotenv from "dotenv";
 dotenv.config(); 
@@ -43,7 +44,7 @@ app.use('/reset-password', recoverPassword);
 app.use('/validateEmail', validateEmail);
 app.use('/deleteTruck', deleteCamionAdmin);
 app.use ('/mostrar', mostrarDoc)
-
+app.use('/mostrarUbicacion', mostrarUbi);
 // rutas admin
 app.use('/authAdmin', authAdmin);
 app.use('/startAdmin', startAdmin); 
