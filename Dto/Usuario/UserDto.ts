@@ -5,16 +5,23 @@ class User {
     private _apellidos: string;
     private _password: string;
     private _telefono: string;
+<<<<<<< HEAD
     private _latitud: number;
     private _longitud: number;
+=======
+>>>>>>> 20b251c0ae9c6ce028c994851c8d1ce63796a62c
 
     constructor(
         id_rol: number, email: string, nombres: string,
         apellidos: string, 
         password: string,
+<<<<<<< HEAD
         telefono: string,
         latitud: number,
         longitud: number
+=======
+        telefono: string
+>>>>>>> 20b251c0ae9c6ce028c994851c8d1ce63796a62c
     ) {
         this._id_rol = id_rol;
         this._email = email;
@@ -22,8 +29,11 @@ class User {
         this._apellidos = apellidos;
         this._password = password
         this._telefono = telefono;
+<<<<<<< HEAD
         this._latitud = latitud;
         this._longitud = longitud;
+=======
+>>>>>>> 20b251c0ae9c6ce028c994851c8d1ce63796a62c
     }
 
     // Getters
@@ -50,6 +60,7 @@ class User {
     get password(): string {
         return this._password;
     }
+<<<<<<< HEAD
 
     get latitud(): number {
         return this._latitud;
@@ -59,6 +70,8 @@ class User {
         return this._longitud;
     }
     
+=======
+>>>>>>> 20b251c0ae9c6ce028c994851c8d1ce63796a62c
     
     // Setters
     set id_rol(id_rol: number) {
@@ -76,11 +89,17 @@ class User {
     set apellidos(apellidos: string) {
         this._apellidos = apellidos;
     }
+<<<<<<< HEAD
 
     set telefono(telefono: string) {
         this._telefono = telefono;
     }
 
+=======
+    set telefono(telefono: string) {
+        this._telefono = telefono;
+    }
+>>>>>>> 20b251c0ae9c6ce028c994851c8d1ce63796a62c
     set password(password: string) {
         this._password = password;
     }

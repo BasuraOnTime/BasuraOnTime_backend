@@ -42,9 +42,12 @@ class Solicitud{
         return this._tamano;
     }
 
+<<<<<<< HEAD
     get id(): number {
         return this._id;
     }
+=======
+>>>>>>> 20b251c0ae9c6ce028c994851c8d1ce63796a62c
 
 
     set zona(zona: string) {
