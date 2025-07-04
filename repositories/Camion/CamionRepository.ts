@@ -7,6 +7,7 @@ class CamionRepository{
             const sql = 'INSERT INTO camion (placa, marca, modelo, capacidad, estado_camion, tipo_c, fk_id_administrador) VALUES (?, ?, ?, ?, ?, ?, ?)';
             const values = [camion.placa, camion.marca, camion.modelo, camion.capacidad, camion.estado_camion, camion.tipo_c, camion.id];
             const result = await db.execute(sql, values);
+            return result;
         } catch(error){
             console.error("No se puedo agregar", error)
             throw error
