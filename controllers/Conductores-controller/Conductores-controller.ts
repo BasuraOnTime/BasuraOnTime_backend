@@ -1,25 +1,31 @@
 import { Request, Response } from 'express';
-import ConductorRepository from '../../repositories/Conductores/ConductoresRepository';
-import Conductor from '../../Dto/Conductores/Conductores';
+import ConductorServices from '../../services/Conductor/ConductorServices';
+import Conductor from '../../Dto/Conductores/Conductor';
 
 export const agregarConductor = async (req: Request, res: Response) => {
   try {
-    const { nombres, apellidos, telefono, tipo_licencia, fecha_vencimiento_licencia } = req.body;
+    delete req.body.id;
+    delete req.body.rol;
+    const { id_rol , email, nombres, apellidos, telefono, password ,tipo_licencia, fecha_vencimiento_licencia, fk_id_camion } = req.body;
 
-    if (!nombres || !apellidos || !telefono || !tipo_licencia || !fecha_vencimiento_licencia) {
+    if (!id_rol || !email || !nombres || !apellidos || !telefono || !password || !tipo_licencia || !fecha_vencimiento_licencia || !fk_id_camion) {
       return res.status(400).json({ mensaje: 'Todos los campos son obligatorios' });
     }
 
     // ✅ Crear instancia del DTO
     const conductor = new Conductor(
+      id_rol,
+      email,
       nombres,
       apellidos,
       telefono,
+      password,
       tipo_licencia,
-      fecha_vencimiento_licencia
+      fecha_vencimiento_licencia,
+      fk_id_camion,
     );
 
-    await ConductorRepository.add(conductor);
+    await ConductorServices.registerConductor(conductor);
 
     res.status(201).json({ mensaje: 'Conductor agregado correctamente' });
   } catch (error) {
