@@ -3,17 +3,19 @@ import Conductor from '../../Dto/Conductores/Conductores';
 
 class ConductorRepository {
   static async add(conductor: Conductor) {
-    const query = `
-      INSERT INTO conductores (nombres, apellidos, telefono, tipo_licencia, fecha_vencimiento_licencia)
-      VALUES (?, ?, ?, ?, ?)
-    `;
-    const values = [
-      conductor.nombres,
-      conductor.apellidos,
-      conductor.telefono,
-      conductor.tipo_licencia,
-      conductor.fecha_vencimiento_licencia
-    ];
+  const query = `
+  INSERT INTO conductores (nombres, apellidos, telefono, tipo_licencia, fecha_vencimiento_licencia, password, email)
+  VALUES (?, ?, ?, ?, ?, ?, ?)
+`;
+const values = [
+  conductor.nombres,
+  conductor.apellidos,
+  conductor.telefono,
+  conductor.tipo_licencia,
+  conductor.fecha_vencimiento_licencia,
+  conductor.password,
+  conductor.email
+];
     return db.execute(query, values);
   }
 
