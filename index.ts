@@ -27,7 +27,7 @@ import elminarConductor from "./routes/deleteConductor";
 import documento from "./routes/uploadDocumento";
 import mostrarDoc from "./routes/mostrarDocumento";
 import mostrarUbi from "./routes/mostrarUbiUser";
-import UsuarioRepository from "./repositories/Usuario/UserRepository2";
+import UsuarioRepository from "./repositories/Usuario/UsuarioRepository2";
 import TruckService from "./services/Conductor/TruckService";
 import TruckController from "./controllers/Conductores-controller/TruckController";
 import verifyToken from "./middleware/VerifyToken";
@@ -52,7 +52,8 @@ const truckController = new TruckController(truckService, io, userSockets);
 
 io.on('connection', (socket) => {
     socket.on('register_user', (userId) => {
-      userSockets.set(userId, socket);
+      console.log('restrando usuario', userId)
+      userSockets.set(String(userId), socket)
     })
     
     socket.on('disconnect', () => {
