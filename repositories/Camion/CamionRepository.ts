@@ -7,10 +7,10 @@ class CamionRepository{
             const sql = 'CALL AddCamion(?, ?, ?, ?, ?, ?, ?)';
             const values = [
                 camion.placa,
+                camion.marca,
                 camion.modelo,
                 camion.capacidad,
                 camion.estado_camion,
-                camion.marca,
                 camion.tipo_c,
                 camion.id
             ];
