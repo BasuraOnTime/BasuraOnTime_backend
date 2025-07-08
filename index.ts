@@ -26,7 +26,6 @@ import editconductor from "./routes/editConductores";
 import elminarConductor from "./routes/deleteConductor";
 import documento from "./routes/uploadDocumento";
 import mostrarDoc from "./routes/mostrarDocumento";
-import mostrarUbi from "./routes/mostrarUbiUser";
 import UsuarioRepository from "./repositories/Usuario/UsuarioRepository2";
 import TruckService from "./services/Conductor/TruckService";
 import TruckController from "./controllers/Conductores-controller/TruckController";
@@ -77,7 +76,7 @@ app.use('/reset-password', recoverPassword);
 app.use('/validateEmail', validateEmail);
 app.use('/deleteTruck', deleteCamionAdmin);
 app.use ('/mostrar', mostrarDoc)
-app.use('/mostrarUbicacion', mostrarUbi);
+
 
 
 // rutas admin
