@@ -13,14 +13,12 @@ export default class TruckService {
 
   async verificarUsuariosCercanos(truckLat: number, truckLng: number) {
     const usuarios = await this.usuarioRepository.getAllUsuarios();
-    console.log(`Verificando ${usuarios.length} usuarios...`);
     
     // Filtrar y convertir usuarios con coordenadas válidas
     const usuariosConCoordenadas = usuarios.filter(user => {
       // Verificar que no sean null/undefined
       if (user.latitud === null || user.longitud === null || 
           user.latitud === undefined || user.longitud === undefined) {
-        console.log(`⚠️  Saltando usuario ${user.id_usuario} - coordenadas null/undefined`);
         return false;
       }
       
@@ -30,7 +28,6 @@ export default class TruckService {
       
       // Validar que la conversión fue exitosa
       if (isNaN(lat) || isNaN(lng)) {
-        console.log(`⚠️  Saltando usuario ${user.id_usuario} - coordenadas no numéricas`);
         return false;
       }
       
@@ -40,14 +37,9 @@ export default class TruckService {
       
       return true;
     });
-
-    console.log(`${usuariosConCoordenadas.length} usuarios con coordenadas válidas de ${usuarios.length} total`);
-    
     const usuariosCercanos: { userId: number; distanciaKm: number }[] = [];
 
     for (const user of usuariosConCoordenadas) {
-      console.log(`Usuario ${user.id_usuario}: lat=${user.latitud}, lng=${user.longitud}`);
-      
       try {
         const distanciaKm = await this.calcularDistanciaGoogle(
           truckLat,
@@ -56,12 +48,11 @@ export default class TruckService {
           user.longitud
         );
 
-        if (distanciaKm <= 1) {
+        if (distanciaKm <= 0.7) {
           usuariosCercanos.push({
             userId: user.id_usuario,
             distanciaKm,
           });
-          console.log(`✓ Usuario ${user.id_usuario} está cerca: ${distanciaKm.toFixed(2)}km`);
         } else {
           console.log(`Usuario ${user.id_usuario} está lejos: ${distanciaKm.toFixed(2)}km`);
         }
@@ -97,8 +88,7 @@ export default class TruckService {
           destinations: `${lat2},${lng2}`,
           key: process.env.GOOGLE_MAPS_API_KEY,
           units: 'metric',
-        },
-        timeout: 10000, // 10 segundos timeout
+        }, 
       });
 
       // Validar estructura de respuesta
@@ -168,7 +158,6 @@ export default class TruckService {
     );
     
     if (!todasValidas) {
-      console.log(`❌ Coordenadas inválidas: lat1=${lat1}, lng1=${lng1}, lat2=${lat2}, lng2=${lng2}`);
       return false;
     }
     
@@ -179,28 +168,9 @@ export default class TruckService {
                        lng2 >= -180 && lng2 <= 180;
     
     if (!rangoValido) {
-      console.log(`❌ Coordenadas fuera de rango: lat1=${lat1}, lng1=${lng1}, lat2=${lat2}, lng2=${lng2}`);
       return false;
     }
     
     return true;
-  }
-
-  // Método alternativo usando fórmula de Haversine como fallback
-  private calcularDistanciaHaversine(lat1: number, lng1: number, lat2: number, lng2: number): number {
-    const R = 6371; // Radio de la Tierra en km
-    const dLat = this.toRadians(lat2 - lat1);
-    const dLng = this.toRadians(lng2 - lng1);
-    
-    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(this.toRadians(lat1)) * Math.cos(this.toRadians(lat2)) *
-              Math.sin(dLng/2) * Math.sin(dLng/2);
-    
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c;
-  }
-
-  private toRadians(degrees: number): number {
-    return degrees * (Math.PI / 180);
   }
 }

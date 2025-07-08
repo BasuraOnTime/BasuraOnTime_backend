@@ -52,7 +52,6 @@ const truckController = new TruckController(truckService, io, userSockets);
 
 io.on('connection', (socket) => {
     socket.on('register_user', (userId) => {
-      console.log('restrando usuario', userId)
       userSockets.set(String(userId), socket)
     })
     
@@ -87,7 +86,7 @@ app.use('/startAdmin', startAdmin);
 app.use('/settingsTruck', configCamionAdmin);
 app.use('/addTruck', addCamionAdmin);
 app.use('/modifyTruck', modificarCamionAdmin);
-app.use ('/notifiaciones', notificarUser);
+app.use ('/notify', notificarUser);
 app.use('/settingsRequest', configSoliAdmin);
 app.use ('/documentos',documento)
  

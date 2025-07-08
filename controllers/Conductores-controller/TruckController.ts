@@ -34,11 +34,6 @@ export default class TruckController {
     try {
       const usuariosCercanos = await this.truckService.verificarUsuariosCercanos(lat, lng);
 
-      console.log(`\n📍 Camión en: ${lat}, ${lng}`);
-      console.log(`🔍 Usuarios cercanos encontrados: ${usuariosCercanos.length}`);
-
-      // Debug: mostrar usuarios conectados
-      console.log('\n👥 Usuarios conectados:');
       for (const [userId, socket] of this.userSockets.entries()) {
         console.log(`  - Usuario ${userId} -> Socket ${socket.id}`);
       }
@@ -50,16 +45,10 @@ export default class TruckController {
 
         // ✅ Recupera directamente el Socket
         const socket = this.userSockets.get(String(userIdStr));
-        console.log(typeof(socket))
-
-        console.log(`\n📢 Intentando notificar usuario ${u.userId}:`);
-        console.log(`  - Distancia: ${u.distanciaKm.toFixed(2)}km`);
-        console.log(`  - Buscando userId: "${userIdStr}"`);
-        console.log(`  - Socket encontrado: ${socket ? socket.id : 'NO ENCONTRADO'}`);
 
         if (socket && socket.connected) {
           socket.emit('truck_nearby', {
-            message: `🚛 El camión está a ${u.distanciaKm.toFixed(2)} km de distancia`,
+            message: `El camion esta a ${u.distanciaKm.toFixed(2)} km de distancia`,
             truckLocation: { lat, lng },
             timestamp: new Date(),
             userId: u.userId,
@@ -67,17 +56,10 @@ export default class TruckController {
           });
 
           notificacionesEnviadas++;
-          console.log(`  ✅ Notificación enviada exitosamente`);
         } else {
-          console.log(`  ⚠️  Socket desconectado o no encontrado, removiendo del mapa`);
           this.userSockets.delete(userIdStr);
         }
       });
-
-      console.log(`\n📊 Resumen:`);
-      console.log(`  - Usuarios cerca: ${usuariosCercanos.length}`);
-      console.log(`  - Notificaciones enviadas: ${notificacionesEnviadas}`);
-      console.log(`  - Usuarios conectados: ${this.userSockets.size}`);
 
       return res.json({
         status: 'Ubicación procesada',
@@ -90,7 +72,6 @@ export default class TruckController {
       });
 
     } catch (error) {
-      console.error('Error procesando ubicación del camión:', error);
       return res.status(500).json({
         error: 'Error interno del servidor',
         message: error instanceof Error ? error.message : String(error),
@@ -119,7 +100,6 @@ export default class TruckController {
   cleanupDisconnectedSockets() {
     for (const [userId, socket] of this.userSockets.entries()) {
       if (!socket || !socket.connected) {
-        console.log(`🧹 Limpiando socket desconectado: Usuario ${userId}`);
         this.userSockets.delete(userId);
       }
     }
