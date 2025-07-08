@@ -12,7 +12,6 @@ export const agregarConductor = async (req: Request, res: Response) => {
       return res.status(400).json({ mensaje: 'Todos los campos son obligatorios' });
     }
 
-    // ✅ Crear instancia del DTO
     const conductor = new Conductor(
       id_rol,
       email,
@@ -27,11 +26,14 @@ export const agregarConductor = async (req: Request, res: Response) => {
 
     await ConductorServices.registerConductor(conductor);
 
-    res.status(201).json({ mensaje: 'Conductor agregado correctamente' });
+    res.status(201).json({ mensaje: 'Conductor agregado y correo enviado' });
   } catch (error) {
-    console.error('Error al agregar conductor:', error);
-    res.status(500).json({ mensaje: 'Error al insertar el conductor' });
-  }
+  console.error('Error al registrar conductor:', error);
+  res.status(500).json({ mensaje: 'Error al registrar el conductor', error: error instanceof Error ? error.message : error });
+}
+
+  
 };
+
 
 export default agregarConductor

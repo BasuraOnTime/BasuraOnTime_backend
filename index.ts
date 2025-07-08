@@ -29,6 +29,7 @@ import mostrarDoc from "./routes/mostrarDocumento";
 import UsuarioRepository from "./repositories/Usuario/UsuarioRepository2";
 import TruckService from "./services/Conductor/TruckService";
 import TruckController from "./controllers/Conductores-controller/TruckController";
+import loginConductor from './routes/loginConductor';
 import verifyToken from "./middleware/VerifyToken";
 
 import dotenv from "dotenv";
@@ -74,7 +75,6 @@ app.use('/deleteUser', deleteUser);
 app.use('/editUser', editUser);
 app.use('/reset-password', recoverPassword);
 app.use('/validateEmail', validateEmail);
-app.use('/deleteTruck', deleteCamionAdmin);
 app.use ('/mostrar', mostrarDoc)
 
 
@@ -85,6 +85,7 @@ app.use('/startAdmin', startAdmin);
 app.use('/settingsTruck', configCamionAdmin);
 app.use('/addTruck', addCamionAdmin);
 app.use('/modifyTruck', modificarCamionAdmin);
+app.use('/deleteTruck', deleteCamionAdmin);
 app.use ('/notify', notificarUser);
 app.use('/settingsRequest', configSoliAdmin);
 app.use ('/documentos',documento)
@@ -94,6 +95,7 @@ app.use ('/documentos',documento)
 app.use ('/agregarConductor',conductor);
 app.use ("/editConductor", editconductor)
 app.use ("/deletConductor", elminarConductor)
+app.use('/loginConductor', loginConductor);
 app.post('/truck_location', verifyToken, truckController.updateTruckLocation);
 //app.get('/truck_location', verifyToken, truckController.getTruckLocation);
 
