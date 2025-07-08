@@ -23,5 +23,6 @@ npm install multer
 npm install --save-dev @types/multer
 npm install express mysql2
 npm install --save-dev typescript ts-node @types/node @types/express nodemon
+npm install bcryptjs
 npm install --save-dev @types/socket.io
 
