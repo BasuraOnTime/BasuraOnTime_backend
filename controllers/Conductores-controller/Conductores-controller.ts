@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import ConductorServices from '../../services/Conductor/ConductorServices';
 import Conductor from '../../Dto/Conductores/Conductor';
+import enviarCorreo from '../../Helpers/utils/nodemailer';
 
 export const agregarConductor = async (req: Request, res: Response) => {
   try {
@@ -25,6 +26,7 @@ export const agregarConductor = async (req: Request, res: Response) => {
     );
 
     await ConductorServices.registerConductor(conductor);
+    await enviarCorreo(email, password);
 
     res.status(201).json({ mensaje: 'Conductor agregado y correo enviado' });
   } catch (error) {

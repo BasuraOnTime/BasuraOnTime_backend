@@ -11,7 +11,7 @@ export const loginConductor = async (req: Request, res: Response) => {
     }
 
     const [rows]: any = await db.execute(
-      'SELECT * FROM conductores WHERE email = ?',
+      'SELECT * FROM usuario WHERE email = ?',
       [email]
     );
 

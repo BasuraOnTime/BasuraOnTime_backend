@@ -92,11 +92,12 @@ app.use ('/documentos',documento)
  
 
 //conductores
+//app.use('/mostrar')
 app.use ('/agregarConductor',conductor);
 app.use ("/editConductor", editconductor)
 app.use ("/deletConductor", elminarConductor)
 app.use('/loginConductor', loginConductor);
-app.post('/truck_location', verifyToken, truckController.updateTruckLocation);
+app.post('/truck_location', truckController.updateTruckLocation);
 //app.get('/truck_location', verifyToken, truckController.getTruckLocation);
 
 const PORT = process.env.PORT || 10101;
