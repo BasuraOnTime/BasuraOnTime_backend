@@ -30,6 +30,7 @@ import UsuarioRepository from "./repositories/Usuario/UsuarioRepository2";
 import TruckService from "./services/Conductor/TruckService";
 import TruckController from "./controllers/Conductores-controller/TruckController";
 import loginConductor from './routes/loginConductor';
+import estadoSoli from './routes/estadoSoli'
 import verifyToken from "./middleware/VerifyToken";
 
 import dotenv from "dotenv";
@@ -88,6 +89,7 @@ app.use('/modifyTruck', modificarCamionAdmin);
 app.use('/deleteTruck', deleteCamionAdmin);
 app.use ('/notify', notificarUser);
 app.use('/settingsRequest', configSoliAdmin);
+app.use('/stateSoli', estadoSoli)
 app.use ('/documentos',documento)
  
 
