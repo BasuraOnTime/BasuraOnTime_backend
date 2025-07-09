@@ -16,7 +16,7 @@ export default class TruckService {
     
     // Filtrar y convertir usuarios con coordenadas válidas
     const usuariosConCoordenadas = usuarios.filter(user => {
-      if(user.id_rol ! == 2){
+      if(user.id_rol !== 2){
         return false
       }
       // Verificar que no sean null/undefined
@@ -51,7 +51,7 @@ export default class TruckService {
           user.longitud
         );
 
-        if (distanciaKm <= 0.7) {
+        if (distanciaKm <= 2) {
           usuariosCercanos.push({
             userId: user.id_usuario,
             distanciaKm,

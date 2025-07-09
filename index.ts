@@ -52,19 +52,21 @@ const truckController = new TruckController(truckService, io, userSockets);
 
 
 io.on('connection', (socket) => {
-    socket.on('register_user', (userId) => {
-      userSockets.set(String(userId), socket)
-    })
-    
-    socket.on('disconnect', () => {
-      for (const [userId, userSocket] of userSockets.entries()) {
-        if (userSocket.id === socket.id) {
-          userSockets.delete(userId);
-          break;
-        }
+
+  socket.on('register_user', (userId) => {
+    userSockets.set(String(userId), socket);
+  });
+
+  socket.on('disconnect', () => {
+    for (const [userId, userSocket] of userSockets.entries()) {
+      if (userSocket.id === socket.id) {
+        userSockets.delete(userId);
+        break;
       }
-    })
+    }
+  });
 });
+
 
 // rutas usuario
 app.use('/register', register);

@@ -39,16 +39,13 @@ export default class TruckController {
       for (const [userId, socket] of this.userSockets.entries()) {
         console.log(`  - Usuario ${userId} -> Socket ${socket.id}`);
       }
-      console.log(this.userSockets);
 
       let notificacionesEnviadas = 0;
 
       usuariosCercanos.forEach((u) => {
         const userIdStr = String(u.userId);
 
-        // ✅ Recupera directamente el Socket
         const socket = this.userSockets.get(String(userIdStr));
-        console.log(socket)
 
         if (socket && socket.connected) {
           socket.emit('truck_nearby', {
