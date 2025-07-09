@@ -2,6 +2,7 @@
 
 import { Server, Socket } from "socket.io";
 import TruckService from "./../../services/Conductor/TruckService";
+import ConductorRepository from "../../repositories/Conductores/ConductoresRepository";
 import { Request, Response } from "express";
 
 export default class TruckController {
@@ -23,12 +24,13 @@ export default class TruckController {
   }
 
   async updateTruckLocation(req: Request, res: Response) {
-    const { lat, lng } = req.body;
-
-    if (!lat || !lng) {
-      return res.status(400).json({ error: 'Faltan coordenadas lat/lng' });
+    delete req.body.rol
+    const { lat, lng, estado, id} = req.body;
+    if (!lat || !lng || !estado) {
+      return res.status(400).json({ error: 'Faltan datos de conductor' });
     }
-
+    
+    const guardarDatos = await ConductorRepository.modifiyConductor(lat, lng, estado, id)
     this.lastTruckLocation = { lat, lng, timestamp: new Date() };
 
     try {
@@ -37,6 +39,7 @@ export default class TruckController {
       for (const [userId, socket] of this.userSockets.entries()) {
         console.log(`  - Usuario ${userId} -> Socket ${socket.id}`);
       }
+      console.log(this.userSockets);
 
       let notificacionesEnviadas = 0;
 
@@ -45,6 +48,7 @@ export default class TruckController {
 
         // ✅ Recupera directamente el Socket
         const socket = this.userSockets.get(String(userIdStr));
+        console.log(socket)
 
         if (socket && socket.connected) {
           socket.emit('truck_nearby', {

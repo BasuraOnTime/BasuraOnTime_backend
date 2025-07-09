@@ -1,5 +1,6 @@
 import db from '../../config/config-db';
 import Conductor from '../../Dto/Conductores/Conductor';
+import bcrypt from 'bcryptjs';
 
 class ConductorRepository {
   static async add(conductor: Conductor) {
@@ -59,8 +60,41 @@ class ConductorRepository {
       ];
       return db.execute(query, values);
     }
+    static async login(email: string, password: string){
+      try {
 
+        const sql = 'CALL LoginUsuario(?)';
+        const values = [email];
+        const result: any = await db.execute(sql, values);
+        if (result[0].length > 0){
+            const user = result[0][0];
+        if(!user[0].password){
+            return {logged: false, status: "Usuario no tiene contraseña" };
+        }
+        const isPasswordValid = await bcrypt.compare(password, user[0].password);
+        if (isPasswordValid){
+            return {logged: true, status: "Successful authentication", id: user[0].id_usuario, id_rol: user[0].id_rol};
+        }
+        return {logged: false, status: "Invalid username or password" };
+        }
+        return {logged: false, status: "Invalid username or password" };  
+      } catch (error){
+        console.error('Error al agregar conductor:', error);
+        throw new Error('Error al insertar el conductor');
+      }
 
-}
+    }
 
+    static async modifiyConductor(lat: number, lng: number, estado: string, id: number){
+      try{
+        const sql = 'CALL UpdateConductorDatos(?, ?, ?, ?)'
+        const values = [id, lat, lng, estado]
+        return db.execute(sql, values)
+      } catch (error: any){
+        console.error('error al cambiar los datos', error);
+        throw new Error('Error al cambiar los datos');
+      }
+    } 
+
+  }
 export default ConductorRepository;

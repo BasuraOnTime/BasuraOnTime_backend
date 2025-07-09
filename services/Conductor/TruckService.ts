@@ -16,6 +16,9 @@ export default class TruckService {
     
     // Filtrar y convertir usuarios con coordenadas válidas
     const usuariosConCoordenadas = usuarios.filter(user => {
+      if(user.id_rol ! == 2){
+        return false
+      }
       // Verificar que no sean null/undefined
       if (user.latitud === null || user.longitud === null || 
           user.latitud === undefined || user.longitud === undefined) {
