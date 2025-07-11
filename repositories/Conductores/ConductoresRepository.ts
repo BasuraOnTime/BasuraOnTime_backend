@@ -94,7 +94,36 @@ class ConductorRepository {
         console.error('error al cambiar los datos', error);
         throw new Error('Error al cambiar los datos');
       }
-    } 
+    }
+    static async consultarEstado(id: number){
+        const sql = 'CALL GetLatLongIfConductorActivo(?)'
+        const values = [id]
+        const result: any = await db.execute(sql, values);
+        const estado = result[0][0]
+        return estado[0].estado
+    }
+    static async cambiarEstado(id: number, estado: string){
+      try{
+        const sql = 'CALL sp_actualizar_estado_conductor(?,?)'
+        const values = [id, estado];
+        return db.execute(sql, values)
+      } catch(error: any){
+        console.error('error al cambiar los datos', error);
+        throw new Error('Error al cambiar los datos');
+      }
+    }
 
+    static async mostrarConductores(id: number){
+      try{
+        const sql = 'CALL GetConductoresPorAdministrador(?)'
+        const values = [id]
+        const result: any = await db.execute(sql, values);
+        //console.log(result[0][0])
+        return result[0][0]
+      } catch (error){
+         console.error('error al cambiar los datos', error);
+        throw new Error('Error al cambiar los datos');
+      }
+    }
   }
 export default ConductorRepository;

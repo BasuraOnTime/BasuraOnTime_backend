@@ -31,6 +31,8 @@ import TruckService from "./services/Conductor/TruckService";
 import TruckController from "./controllers/Conductores-controller/TruckController";
 import loginConductor from './routes/loginConductor';
 import estadoSoli from './routes/estadoSoli'
+import cambiarEstado from './routes/cambiarEstado'
+import mostrarConductores from './routes/mostrarConductor'
 import verifyToken from "./middleware/VerifyToken";
 
 import dotenv from "dotenv";
@@ -93,16 +95,18 @@ app.use ('/notify', notificarUser);
 app.use('/settingsRequest', configSoliAdmin);
 app.use('/stateSoli', estadoSoli)
 app.use ('/documentos',documento)
- 
+
 
 //conductores
-//app.use('/mostrar')
 app.use ('/agregarConductor',conductor);
 app.use ("/editConductor", editconductor)
 app.use ("/deletConductor", elminarConductor)
 app.use('/loginConductor', loginConductor);
 app.post('/truck_location', verifyToken ,truckController.updateTruckLocation);
-//app.get('/truck_location', verifyToken, truckController.getTruckLocation);
+app.get('/GetTruck_location', verifyToken, truckController.getTruckLocation);
+app.use('/estadoCambiarE', cambiarEstado)
+app.use('/mostrarConductores', mostrarConductores)
+
 
 const PORT = process.env.PORT || 10101;
 
@@ -115,4 +119,3 @@ app.post('/api/conductores/test', (req, res) => {
   console.log('¡Llegó la petición!', req.body);
   res.status(200).json({ mensaje: 'Recibido' });
 });
-
